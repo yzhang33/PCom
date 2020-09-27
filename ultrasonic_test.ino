@@ -21,7 +21,11 @@ digitalWrite(triggerPin, LOW);
 
 duration = pulseIn(echoPin,HIGH);
 long dist_cm = duration*0.034 / 2;
-
+if(dist_cm < 10){
+  digitalWrite(4,HIGH);
+}else{
+  digitalWrite(4,LOW);
+}
   digitalWrite(4,HIGH);
     Serial.print("Distance = ");
     Serial.print(dist_cm);
