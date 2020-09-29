@@ -16,7 +16,7 @@ delayMicroseconds(2);
 digitalWrite(triggerPin, HIGH);
 delayMicroseconds(10);
 digitalWrite(triggerPin, LOW);
-
+}
 
 
 duration = pulseIn(echoPin,HIGH);
