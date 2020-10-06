@@ -33,6 +33,7 @@ void setup() {
 
 void loop() {
   button1State = digitalRead(2);
+  delay(20);
   if (button1State != lastButton1State) {
     if (button1State == HIGH){
       outPin[0] = true;
@@ -41,41 +42,50 @@ void loop() {
   lastButton1State = button1State;
 
   button2State = digitalRead(3);
+  delay(20);
   if (button2State != lastButton2State) {
     if (button2State == HIGH){
-      outPin[2] = true;
+      outPin[1] = true;
     }
   }
   lastButton2State = button2State;
-
-    button3State = digitalRead(4);
+  
+  button3State = digitalRead(4);
+  delay(20);
   if (button3State != lastButton3State) {
     if (button3State == HIGH){
-      outPin[3] = true;
+      outPin[2] = true;
     }
   }
   lastButton3State = button3State;
 
-  if(outPin[0]){
-    playMusic(0, notes1,5, 200,[3,4]);
+  while(outPin[0]){
+    if(playMusic(0, notes1,5, 200)==0){
+      break;
+    }
   }
   
-  if(outPin[1]){
-    playMusic(1, notes2,4, 200,[2,4]);
+  while(outPin[1]){
+    if(playMusic(1, notes2,4, 200)==0){
+      break;
+    }
   }
-  if(outPin[2]){
-     playMusic(2, notes3,8, 100,[2,3]);
+  
+  while(outPin[2]){
+     if(!playMusic(2, notes3,8, 200)==0){
+       break;
+     }
   }
 
 }
-
-void playMusic(int playingPin, int mynotes[],int len, int tempo,int readpin[]){
+int playMusic(int playingPin, int mynotes[],int len, int tempo){
    for (int note = 0; note < len; note++) {             
         tone(speakerPin, notes1[note],tempo);
         delay(tempo);
-      if (digitalRead(readpin[0]) == HIGH || digitalRead(readpin[1]) == HIGH){
+      if (digitalRead(2) == HIGH || digitalRead(3) == HIGH || digitalRead(4) == HIGH){
         outPin[playingPin] = false;
-        break;
+        return 0;
       }
     }
 }
+
