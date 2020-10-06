@@ -59,22 +59,16 @@ void loop() {
   }
   lastButton3State = button3State;
 
-  while(outPin[0]){
-    if(playMusic(0, notes1,5, 200)==0){
-      break;
-    }
+  if(outPin[0]){
+    playMusic(0, notes1,5, 200);
   }
   
-  while(outPin[1]){
-    if(playMusic(1, notes2,4, 200)==0){
-      break;
-    }
+  if(outPin[1]){
+    playMusic(1, notes2,4, 200);
   }
   
-  while(outPin[2]){
-     if(!playMusic(2, notes3,8, 200)==0){
-       break;
-     }
+  if(outPin[2]){
+     playMusic(2, notes3,8, 200);
   }
 
 }
