@@ -72,6 +72,7 @@ void loop() {
   }
 
 }
+//playingPin the pin is playing music; notes:notes to play; len: note array lenght; tempo: tempo of notes
 int playMusic(int playingPin, int mynotes[],int len, int tempo){
    for (int note = 0; note < len; note++) {             
         tone(speakerPin, notes1[note],tempo);
